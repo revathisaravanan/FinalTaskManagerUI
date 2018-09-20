@@ -13,6 +13,12 @@ export class ViewtaskComponent implements OnInit {
   tasks: Task[];
   rendertask: boolean;
   editingTask: Task;
+  tasknameSearch: string;
+  parenttaskSearch: string;
+  priorityfromSearch: number;
+  prioritytoSearch: number;
+  startdateSearch: string;
+  enddateSearch: string;
 
   constructor(private router: Router, private taskservice: TaskService) { }
 

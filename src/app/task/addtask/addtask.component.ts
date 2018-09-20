@@ -18,8 +18,6 @@ export class AddtaskComponent implements OnInit {
   }
 
   addTask(): void {
-    console.log('Im here in add task componnen' + 'json' + this.task.taskName);
-    /*this.taskservice.addTask(this.task).subscribe((task) => {console.log(task); });*/
     this.taskservice.addTask(this.task).subscribe( data => { alert('Task added successfully');
     });
   }

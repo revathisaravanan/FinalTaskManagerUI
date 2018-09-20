@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskRoutingModule } from './task-routing.module';
 import { AddtaskComponent } from './addtask/addtask.component';
 import { ViewtaskComponent } from './viewtask/viewtask.component';
+import {TaskfilterPipe} from './viewtask/taskfilter.pipe';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { ViewtaskComponent } from './viewtask/viewtask.component';
     TaskRoutingModule,
     FormsModule
   ],
-  declarations: [AddtaskComponent, ViewtaskComponent]
+  declarations: [AddtaskComponent, ViewtaskComponent, TaskfilterPipe]
 })
 export class TaskModule { }

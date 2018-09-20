@@ -53,22 +53,19 @@
   <div class="form-group">
     <div class="row p-3">
       <label class="col-md-2 text-right">Task</label>
-      <!-- <input class="col-md-2 form-control" type="text" placeholder="Task's Name" [(ngModel)]="task.taskName">-->
+      <input class="col-md-2 form-control" type="text" name="taskName" [(ngModel)]="tasknameSearch">
       <label class="col-md-2 text-right">Parent Task</label>
-      <!--<input class="col-md-2 form-control" type="text" placeholder="Parent Task's Name"
-             [(ngModel)]="task.parentTaskName">-->
+      <input class="col-md-2 form-control" type="text" name="parentTaskName" [(ngModel)]="parenttaskSearch">
     </div>
     <div class="row p-3">
       <label class="col-md-2 text-right">Priority From</label>
-      <!--<input class="col-xl-1 form-control" type="number" min="0" max="30" placeholder="Start"
-             [(ngModel)]="min_priority">-->
+      <input class="col-xl-1 form-control" type="number" min="0" max="30" name="priorityFrom" [(ngModel)]="priorityfromSearch">
       <label class="col-md-1 text-right">Priority To</label>
-      <!--<input class="col-xl-1 form-control" type="number" min="0" max="30" placeholder="End"
-             [(ngModel)]="max_priority">-->
+      <input class="col-xl-1 form-control" type="number" min="0" max="30" name="priorityTo" [(ngModel)]="prioritytoSearch">
       <label class="col-md-1 text-right">Start Date</label>
-      <!--<input class="col-md-2 form-control" type="text" placeholder="Start Date" [(ngModel)]="filterStartDate">-->
+      <input class="col-md-2 form-control" type="text" name="startDate" [(ngModel)]="startdateSearch">
       <label class="col-md-1 text-right">End Date</label>
-      <!-- <input class="col-md-2 form-control" type="text" placeholder="Start Date" [(ngModel)]="filterEndDate">-->
+      <input class="col-md-2 form-control" type="text" name="endDate" [(ngModel)]="enddateSearch">
     </div>
     <div class="row">
       <table class="table col-md-11 ml-5 table-hover">
@@ -84,7 +81,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let task of tasks" >
+        <tr *ngFor="let task of tasks | taskSearch : tasknameSearch: parenttaskSearch: priorityfromSearch
+                                                   :prioritytoSearch: startdateSearch: enddateSearch" >
           <th scope="row">{{task.taskId}}</th>
           <td>{{task.taskName}}</td>
           <td>{{task.parentTaskName}}</td>
@@ -93,9 +91,9 @@
           <td>{{task.endDate}}</td>
           <td>
             <div class="row text-center">
-              <button class="btn btn-outline-dark" (click)="editTask(task)">Edit
+              <button class="btn btn-outline-dark" [disabled]="task.status == 'InActive'" (click)="editTask(task)">Edit
               </button>
-              <button class="btn btn-outline-danger ml-lg-3" (click)="endTask(task)">End Task</button>
+              <button class="btn btn-outline-danger ml-lg-3" [disabled]="task.status == 'InActive'" (click)="endTask(task)">End Task</button>
             </div>
           </td>
         </tr>
