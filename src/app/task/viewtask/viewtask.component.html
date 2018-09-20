@@ -1,0 +1,106 @@
+<div *ngIf="rendertask" class=”container”>
+  <h2> Update Task </h2>
+  <form>
+    <div class="form-group">
+      <div class="row p-3">
+        <label class="col-md-3 p-3 text-right" for="taskName">Task</label>
+        <input class="col-md-3 p-3 form-control form-control-lg"
+               id="taskName" type="text" placeholder="Task's Name" name="taskName"
+               [(ngModel)]="editingTask.taskName">
+      </div>
+
+      <div class="row p-3">
+        <label class="col-md-3 p-3 text-right" for="priority">Priority</label>
+        <div class="col-md-2 pt-3">
+          <input class="form-control-range slider"
+                 type="range" id="priority" min="0" max="30" name="priority"
+                 [(ngModel)]="editingTask.priority">
+        </div>
+        <div class="col-md-1 pt-3 text-center">
+          <span>{{editingTask.priority}}</span>
+        </div>
+
+      </div>
+      <div class="row p-3">
+        <label class="col-md-3 p-3 text-right" for="parentTaskName">Parent Task</label>
+        <input class="col-md-3 p-3 form-control form-control-lg"
+               id="parentTaskName" type="text" placeholder="Parent Task's Name" name="parentTaskName"
+               [(ngModel)]="editingTask.parentTaskName">
+      </div>
+      <div class="row pt-3 pl-2">
+        <label class="col-md-3 p-3 text-right" for="startDate">Start Date</label>
+        <input class="col-md-3 p-3 form-control form-control-lg"
+               id="startDate" type="date" placeholder="Start Date" name="startDate"
+               [(ngModel)]="editingTask.startDate">
+      </div>
+      <div class="row pt-3 pl-2">
+        <label class="col-md-3 p-3 text-right" for="endDate">End Date</label>
+        <input class="col-md-3 p-3 form-control form-control-lg"
+               id="endDate" type="date" placeholder="End Date" name="endDate"
+               [(ngModel)]="editingTask.endDate">
+      </div>
+      <div class="row p-3 text-center">
+        <span class="col-md-3 p-3 text-right"></span>
+        <button class="btn btn-success" (click)="updateTask(editingTask)">Update</button>
+        <button class="btn btn-success" (click)="cancelTask()">Cancel</button>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<form>
+  <div class="form-group">
+    <div class="row p-3">
+      <label class="col-md-2 text-right">Task</label>
+      <!-- <input class="col-md-2 form-control" type="text" placeholder="Task's Name" [(ngModel)]="task.taskName">-->
+      <label class="col-md-2 text-right">Parent Task</label>
+      <!--<input class="col-md-2 form-control" type="text" placeholder="Parent Task's Name"
+             [(ngModel)]="task.parentTaskName">-->
+    </div>
+    <div class="row p-3">
+      <label class="col-md-2 text-right">Priority From</label>
+      <!--<input class="col-xl-1 form-control" type="number" min="0" max="30" placeholder="Start"
+             [(ngModel)]="min_priority">-->
+      <label class="col-md-1 text-right">Priority To</label>
+      <!--<input class="col-xl-1 form-control" type="number" min="0" max="30" placeholder="End"
+             [(ngModel)]="max_priority">-->
+      <label class="col-md-1 text-right">Start Date</label>
+      <!--<input class="col-md-2 form-control" type="text" placeholder="Start Date" [(ngModel)]="filterStartDate">-->
+      <label class="col-md-1 text-right">End Date</label>
+      <!-- <input class="col-md-2 form-control" type="text" placeholder="Start Date" [(ngModel)]="filterEndDate">-->
+    </div>
+    <div class="row">
+      <table class="table col-md-11 ml-5 table-hover">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Task</th>
+          <th scope="col">Parent</th>
+          <th scope="col">Priority Range (1-30)</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let task of tasks" >
+          <th scope="row">{{task.taskId}}</th>
+          <td>{{task.taskName}}</td>
+          <td>{{task.parentTaskName}}</td>
+          <td>{{task.priority}}</td>
+          <td>{{task.startDate}}</td>
+          <td>{{task.endDate}}</td>
+          <td>
+            <div class="row text-center">
+              <button class="btn btn-outline-dark" (click)="editTask(task)">Edit
+              </button>
+              <button class="btn btn-outline-danger ml-lg-3" (click)="endTask(task)">End Task</button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>
